@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/madeTwitter/static/css/main.cc8df180.chunk.css",
+    "main.css": "/madeTwitter/static/css/main.e3152dd1.chunk.css",
     "main.js": "/madeTwitter/static/js/main.2a2b5a95.chunk.js",
     "main.js.map": "/madeTwitter/static/js/main.2a2b5a95.chunk.js.map",
     "runtime-main.js": "/madeTwitter/static/js/runtime-main.85ce7cd0.js",
@@ -8,13 +8,13 @@
     "static/js/2.9080e55b.chunk.js": "/madeTwitter/static/js/2.9080e55b.chunk.js",
     "static/js/2.9080e55b.chunk.js.map": "/madeTwitter/static/js/2.9080e55b.chunk.js.map",
     "index.html": "/madeTwitter/index.html",
-    "static/css/main.cc8df180.chunk.css.map": "/madeTwitter/static/css/main.cc8df180.chunk.css.map",
+    "static/css/main.e3152dd1.chunk.css.map": "/madeTwitter/static/css/main.e3152dd1.chunk.css.map",
     "static/js/2.9080e55b.chunk.js.LICENSE.txt": "/madeTwitter/static/js/2.9080e55b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.85ce7cd0.js",
     "static/js/2.9080e55b.chunk.js",
-    "static/css/main.cc8df180.chunk.css",
+    "static/css/main.e3152dd1.chunk.css",
     "static/js/main.2a2b5a95.chunk.js"
   ]
 }
