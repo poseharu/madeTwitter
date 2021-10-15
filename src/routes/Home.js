@@ -40,7 +40,9 @@ function Home(props) {
           <MadeTwitter 
             key={data.id}
             data={data} 
-            isOwner={data.creatorId === props.userObj.uid}/>
+            isOwner={data.creatorId === props.userObj.uid}
+            userObj={props.userObj}
+          />
         ))}
       </div>
     </div>

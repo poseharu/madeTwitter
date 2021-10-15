@@ -27,8 +27,8 @@ function AddTwitter(props) {
     if(Attachment !== ""){
       //파일에 대한 참고를 가짐
       //ref(storage: FirebaseStorage, url?: string): StorageReference
-      //url = `${유저아이디명 폴더}/${사진이름}`
-      const fileRef = ref(storageService, `${props.userObj.uid}/${uuidV4()}`);
+      //url = `${유저아이디명 폴더}/attachment/${사진이름}`
+      const fileRef = ref(storageService, `${props.userObj.uid}/attachment/${uuidV4()}`);
 
       //텍스트화된 이미지를 storage에 업로드하고 처리결과 데이터 반환
       //Promise 이므로 비동기 처리

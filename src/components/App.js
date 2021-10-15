@@ -3,6 +3,9 @@ import AppRouter from './Router';
 import { auth } from "../firebase";
 import { updateProfile } from 'firebase/auth';
 
+import { Provider } from 'react-redux';
+import { store } from '../_store/store';
+
 function App() {
   //false이면 AppRouter를 숨김 근데 왜쓰는지 모르겠음 없어도 지장은 없는데 말이지...
   const [Init, setInit] = useState(false);
@@ -20,6 +23,7 @@ function App() {
         setUserObj({
           displayName: user.displayName,
           uid:user.uid,
+          photoURL: user.photoURL,
           updateProfile:(args) => updateProfile(user, args)
         })
       }
@@ -37,12 +41,13 @@ function App() {
     setUserObj({
       displayName: user.displayName,
       uid:user.uid,
+      photoURL: user.photoURL,
       updateProfile:(args) => updateProfile(user, args)
     })
   }
 
   return (
-    <>
+    <Provider store={store}>
       {Init ? (
         <AppRouter 
           refreshUser={refreshUser}
@@ -52,7 +57,7 @@ function App() {
       ) : (
         "Initializing..."
       )}
-    </>
+    </Provider>
   );
 }
 

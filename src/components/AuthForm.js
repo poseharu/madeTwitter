@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
-import { auth } from "../firebase";
-import { 
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, 
-  updateProfile
-} from 'firebase/auth';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {registerUser, loginUser } from '../_actions/user_action';
+import Global from '../api/Global';
 
 function AuthForm({refreshUser}) {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [NewAccount, setNewAccount] = useState(true);
-  const [Errer, setErrer] = useState('')
+  const [Errer, setErrer] = useState('');
+
+  const loginMessage = useSelector(state => state.login.loginMessage);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    setErrer(loginMessage)
+  }, [loginMessage])
 
   const onChangeValue = (e) =>{
     const {
@@ -20,30 +25,30 @@ function AuthForm({refreshUser}) {
     else setPassword(value);
   }
 
-  const onSubmit = async(e) => {
+  const onSubmit = (e) => {
     //버튼이 눌러질때 새로고침이벤트가 발생되지 않도록 코드로 막아줌
     e.preventDefault();
-    try{
+
+    const emailCheck = Global.checkEmail(Email);
+    const passwordCheck = Global.CheckPassword(Password);
+    if(emailCheck !== '') {
+      setErrer(emailCheck);
+    }
+    else if(passwordCheck !== '') {
+      setErrer(passwordCheck);
+    }
+    else{
+      const data = {Email, Password};
       if(NewAccount){
-        //true: create account
-        //신규 계정 생성에 성공하면 사용자가 자동으로 로그인됩니다.
-        const data = await createUserWithEmailAndPassword(auth, Email, Password);
-        //displayName을 초기화시켜줌
-        await updateProfile(data.user, { displayName: 'No Name' });
-        //user데이터를 사용하기 위해서 새로고침함.
-        refreshUser();
+        //회원가입
+        dispatch(registerUser(data));
       }
       else{
-        //false: log in
-        //이메일과 패스워드를 통해 저장된 계정과 일치하면 로그인함
-        await signInWithEmailAndPassword(auth, Email, Password);
+        //로그인
+        dispatch(loginUser(data));
       }
-      //로그인이 되면 App.js의 useEffact가 살행되어 onAuthStateChanged 실행됨
     }
-    catch(errer){
-      setErrer(errer.message);
-    }
-  };
+  }
 
   //로그인을 할지 계정생성할지를 선택
   const toggleAccount = ()=>{

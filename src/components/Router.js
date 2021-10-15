@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Auth from '../routes/Auth';
 import Home from '../routes/Home';
 import Profile from '../routes/Profile';
@@ -7,13 +7,13 @@ import Navigation from './Navigation';
 
 function Router(props) {
   return (
-    <HashRouter>
+    <BrowserRouter>
       {props.isLoggedIn && <Navigation userObj={props.userObj}/>}
 
       {props.isLoggedIn ? (
         <div className="routerStyle">
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/home">
             <Home userObj={props.userObj}/>
           </Route>
           <Route exact path="/profile">
@@ -26,14 +26,14 @@ function Router(props) {
         </div>
       ) : (
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/login">
             <Auth 
               refreshUser={props.refreshUser}
             />
           </Route>
         </Switch>
       )}
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 

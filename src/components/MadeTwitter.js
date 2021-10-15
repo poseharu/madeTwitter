@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 //내글 일때 수정, 삭제가능
-function MadeTwitter({data, isOwner}) {
+function MadeTwitter({data, isOwner, userObj}) {
   const [Editing, setEditing] = useState(false);
   const [UpdateText, setUpdateText] = useState(data.text);
+  const ProfileImg = userObj.photoURL;
 
   //mtwitters 콜랙션에서 doc id와 매칭되는 doc가져오기
   const docRef = doc(dbService, "mtwitters", `${data.id}`);
@@ -65,6 +66,7 @@ function MadeTwitter({data, isOwner}) {
             <button className="formBtn cancelBtn" onClick={toggleEditing} >Cancel</button>
           </> :    
           <>
+            {ProfileImg && <img style={{left: '-10px'}} src={ProfileImg} alt="attachment" />}
             <h4>{data.text}</h4>
             {data.attachmentUrl && <img src={data.attachmentUrl} alt="attachment" />}
             {isOwner && (

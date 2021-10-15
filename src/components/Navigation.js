@@ -9,7 +9,7 @@ export default function Navigation({userObj}) {
     <nav>
       <ul className="naviUl">
         <li>
-          <Link className="homeLink" to="/">
+          <Link className="homeLink" to="/home">
             <FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="2x" />
           </Link>
         </li>

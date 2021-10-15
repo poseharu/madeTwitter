@@ -17,6 +17,7 @@ function Auth({refreshUser}) {
       await signInWithPopup(auth, providerGoogle)
       .then((result) => {
         console.log("google login success!!");
+        // console.log(result);
       })
       .catch((error) => {
         console.log(error);
@@ -24,7 +25,7 @@ function Auth({refreshUser}) {
     }
     else if(e.target.name === "github"){
       //깃헙로그인시
-      //단 깃헙 아이디가 구글로 가입되었을경우는 중복되어 구글로그인을 사용할수 없음..
+      //단 깃헙 아이디가 구글로 가입되었을경우는 중복되어 깃헙로그인을 사용할수 없음..
       const providerGithub = new GithubAuthProvider();
       await signInWithPopup(auth, providerGithub)
       .then((result) => {
